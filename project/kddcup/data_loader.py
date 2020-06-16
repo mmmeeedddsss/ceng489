@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
+from sklearn.model_selection import train_test_split
 
 
 class KddcupDataReader:
@@ -33,3 +34,6 @@ class KddcupDataReader:
 
         return X, y, label_mapping
 
+    @staticmethod
+    def train_test_split(X, y, test_size=0.33, random_state=42):
+        return train_test_split(X, y, test_size, random_state)

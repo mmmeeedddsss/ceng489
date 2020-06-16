@@ -1,12 +1,13 @@
-from kddcup.data_loader import KddcupDataReader
-from sklearn.model_selection import train_test_split
+from sdn.data_loader import CustomSDNReader
 
 from random_forest import RandomForestWrapper
 
-X, y, label_mapping = KddcupDataReader.read()
+data = CustomSDNReader.read(train_size=1000)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-
-# 0.9997055702429659  ???
 print('Random forest with n labels accuracy',
-      RandomForestWrapper().fit_and_calculate_score(X_train, y_train, X_test, y_test))
+      RandomForestWrapper().fit_and_calculate_score(data['train']['X'],
+                                                    data['train']['y'],
+                                                    data['validation']['X'],
+                                                    data['validation']['y']))
+
+
