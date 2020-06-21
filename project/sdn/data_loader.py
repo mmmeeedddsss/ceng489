@@ -40,7 +40,7 @@ class CustomSDNReader:
             'validation':
                 {'X': X_val, 'y': y_val},
             'test':
-                {'X': X_val, 'y': y_val},
+                {'X': X_test, 'y': y_test},
             'y_encoding': y_label_mapping
         }
 
