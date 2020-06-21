@@ -4,7 +4,7 @@ from random_forest import RandomForestWrapper
 from gaussian_naive_bayes import GaussianNBWrapper
 from sklearn.metrics import classification_report
 from nearest_centroid import NearestCentroidWrapper
-
+from kmeans import KMeansWrapper
 
 def read_train_and_test(classifier=RandomForestWrapper):
     for train_size in [100, 200, 400, 800, 1000]:
@@ -20,4 +20,4 @@ def read_train_and_test(classifier=RandomForestWrapper):
 
 
 if __name__ == '__main__':
-    read_train_and_test(NearestCentroidWrapper)
+    read_train_and_test(KMeansWrapper)
