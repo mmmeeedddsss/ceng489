@@ -3,6 +3,7 @@ from sdn.data_loader import CustomSDNReader
 from random_forest import RandomForestWrapper
 from gaussian_naive_bayes import GaussianNBWrapper
 from sklearn.metrics import classification_report
+from nearest_centroid import NearestCentroidWrapper
 
 
 def read_train_and_test(classifier=RandomForestWrapper):
@@ -19,4 +20,4 @@ def read_train_and_test(classifier=RandomForestWrapper):
 
 
 if __name__ == '__main__':
-    read_train_and_test(GaussianNBWrapper)
+    read_train_and_test(NearestCentroidWrapper)
