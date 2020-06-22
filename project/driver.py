@@ -28,9 +28,9 @@ def read_train_and_test(classifier=RandomForestWrapper):
         print(f'Train with size {train_size}')
         data = CustomSDNReader().read(train_size=train_size)
 
-        pred_y = classifier().optimize_and_fit(data['train']['X'],
-                                               data['train']['y'],
-                                               data['test']['X'])
+        pred_y = classifier().fit_and_calculate_score(data['train']['X'],
+                                                      data['train']['y'],
+                                                      data['test']['X'])
 
         sorted_labels = sorted(data['y_encoding'].items(), key=operator.itemgetter(1))
         sorted_labels = [label[0] for label in sorted_labels]
