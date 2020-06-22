@@ -10,7 +10,7 @@ from svc import SVCWrapper
 
 def read_train_and_test(classifier=RandomForestWrapper):
     for train_size in [100, 200, 400, 800, 1000]:
-        data = CustomSDNReader.read(train_size=train_size)
+        data = CustomSDNReader().read(train_size=train_size)
 
         pred_y = classifier().fit_and_calculate_score(data['train']['X'],
                                                             data['train']['y'],
