@@ -34,11 +34,11 @@ class CustomSDNReader:
 
         return {
             'train':
-                {'X': X_train, 'y': y_train},
+                {'X': self.scale(X_train), 'y': y_train},
             'validation':
-                {'X': X_val, 'y': y_val},
+                {'X': self.scale(X_val), 'y': y_val},
             'test':
-                {'X': X_test, 'y': y_test},
+                {'X': self.scale(X_test), 'y': y_test},
             'y_encoding': y_label_mapping
         }
 
@@ -65,3 +65,6 @@ class CustomSDNReader:
         min_max_scaler = preprocessing.MinMaxScaler()
         x_scaled = min_max_scaler.fit_transform(x)
         return pd.DataFrame(x_scaled, columns=df.columns)
+
+    def scale(self, df):
+        return pd.DataFrame(preprocessing.scale(df), columns=df.columns)
