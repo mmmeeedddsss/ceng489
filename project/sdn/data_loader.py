@@ -1,5 +1,7 @@
 import pandas as pd
 from sklearn import preprocessing
+import seaborn as sn
+from matplotlib import pyplot
 
 
 class CustomSDNReader:
@@ -11,25 +13,21 @@ class CustomSDNReader:
         df.columns = new_header  # set the header row as the df header
         return df
 
-    def read(self, train_size=100):
-        string_fields = [1, 2, 3]
+    def read(self, train_size=1000):
 
-        print('Training Data loading stared')
+        print('--------------------------------------------------------')
+        print('--------------------------------------------------------')
+        print(f'-------------------Train Size {train_size}-----------------------')
+        print('--------------------------------------------------------')
+        print('--------------------------------------------------------')
+
         df = self._get_df(f'sdn/sdn_datasets/train/train.{train_size}.csv')
-        print('Training Data loading has done!')
+        self.dataset_stats(df)
 
         X_train, y_train, y_label_mapping = self.numerize(df)
-
-        print('Validation Data loading stared')
         df = self._get_df(f'sdn/sdn_datasets/validation/val.100.csv')
-        print('Validation Data loading has done!')
-
         X_val, y_val, _ = self.numerize(df, y_label_mapping)
-
-        print('Test Data loading stared')
         df = self._get_df(f'sdn/sdn_datasets/test/test.10000.csv')
-        print('Test Data loading has done!')
-
         X_test, y_test, _ = self.numerize(df, y_label_mapping)
 
         return {
@@ -47,24 +45,38 @@ class CustomSDNReader:
         X = df[df.columns[:-1]]
 
         print('Converting Strings to Ints')
-        if not label_encoding:  # Keep the same mapping for this set too
+        if not label_encoding:
             le = preprocessing.LabelEncoder()
             y = le.fit_transform(y)
             label_mapping = {t[1]: t[0] for t in enumerate(le.classes_)}
             print('Label mapping is done as :', label_mapping)
             print(y)
 
-            return X, y, label_mapping
-        else:
+            return X.astype('float64'), y, label_mapping
+        else: # Keep the same mapping for this set too
             for str_form, mapped_int in label_encoding.items():
                 y = y.replace(str_form, mapped_int)
-            return X, y, label_encoding
+            return X.astype('float64'), y, label_encoding
 
     def normalize(self, df):
-        x = df.values #returns a numpy array
+        x = df.values  #returns a numpy array
         min_max_scaler = preprocessing.MinMaxScaler()
         x_scaled = min_max_scaler.fit_transform(x)
         return pd.DataFrame(x_scaled, columns=df.columns)
 
     def scale(self, df):
+        return df
         return pd.DataFrame(preprocessing.scale(df), columns=df.columns)
+
+    def dataset_stats(self, df):
+        # Statistical summary of dataset
+        print(df.describe())
+
+        # X, _, _ = self.numerize(df)
+        # print(X)
+        # # Correlation between variables
+        # sn.heatmap(X.corr(), annot=True)
+        # pyplot.show()
+        # # Histogram of value distribution
+        # X.hist()
+        # pyplot.show()
