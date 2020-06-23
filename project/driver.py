@@ -3,7 +3,7 @@ from sdn.data_loader import CustomSDNReader
 from random_forest import RandomForestWrapper
 from gaussian_naive_bayes import GaussianNBWrapper
 from sklearn.metrics import classification_report
-from kmeans import KNearestNeighborsWrapper
+from knearest import KNearestNeighborsWrapper
 from decision_tree import DecisionTreeWrapper
 from svc import SVCWrapper
 
