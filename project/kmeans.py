@@ -1,14 +1,13 @@
-from sklearn.cluster import KMeans
 from classification_wrapper import ClassificationWrapper
+from sklearn.neighbors import (NeighborhoodComponentsAnalysis,
+KNeighborsClassifier)
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
 
 
-# https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
-class KMeansWrapper(ClassificationWrapper):
+class KNearestNeighborsWrapper(ClassificationWrapper):
     def __init__(self):
-        print('Gaussian Naive Bayes')
-        self.classifier = KMeans(n_clusters=6)
+        nca = NeighborhoodComponentsAnalysis(random_state=42)
+        knn = KNeighborsClassifier(n_neighbors=5)
+        self.classifier = Pipeline([('nca', nca), ('knn', knn)])
 
-    def fit_and_calculate_score(self, X, y, test_X):
-        print('Fitting to given X')
-        self.classifier = self.classifier.fit(X)
-        return self.classifier.predict(test_X)

@@ -32,11 +32,11 @@ class CustomSDNReader:
 
         return {
             'train':
-                {'X': self.scale(X_train), 'y': y_train},
+                {'X': X_train, 'y': y_train},
             'validation':
-                {'X': self.scale(X_val), 'y': y_val},
+                {'X': X_val, 'y': y_val},
             'test':
-                {'X': self.scale(X_test), 'y': y_test},
+                {'X': X_test, 'y': y_test},
             'y_encoding': y_label_mapping
         }
 
@@ -65,7 +65,6 @@ class CustomSDNReader:
         return pd.DataFrame(x_scaled, columns=df.columns)
 
     def scale(self, df):
-        return df
         return pd.DataFrame(preprocessing.scale(df), columns=df.columns)
 
     def dataset_stats(self, df):
