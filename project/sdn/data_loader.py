@@ -44,13 +44,10 @@ class CustomSDNReader:
         y = df[df.columns[-1]]
         X = df[df.columns[:-1]]
 
-        print('Converting Strings to Ints')
         if not label_encoding:
             le = preprocessing.LabelEncoder()
             y = le.fit_transform(y)
             label_mapping = {t[1]: t[0] for t in enumerate(le.classes_)}
-            print('Label mapping is done as :', label_mapping)
-            print(y)
 
             return X.astype('float64'), y, label_mapping
         else: # Keep the same mapping for this set too
@@ -69,7 +66,9 @@ class CustomSDNReader:
 
     def dataset_stats(self, df):
         # Statistical summary of dataset
+        print("Statistical summary of the dataset:")
         print(df.describe())
+        print("--------------------------------------------------------")
 
         # X, _, _ = self.numerize(df)
         # print(X)

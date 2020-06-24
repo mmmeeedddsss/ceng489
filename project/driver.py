@@ -37,4 +37,4 @@ def read_train_and_test(classifier=RandomForestWrapper):
 
 
 if __name__ == '__main__':
-    read_train_optimize_and_test(KNearestNeighborsWrapper)
+    read_train_and_test(SVCWrapper)
