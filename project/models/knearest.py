@@ -1,6 +1,5 @@
-from classification_wrapper import ClassificationWrapper
-from sklearn.neighbors import (NeighborhoodComponentsAnalysis,
-KNeighborsClassifier)
+from models.classification_wrapper import ClassificationWrapper
+from sklearn.neighbors import (NeighborhoodComponentsAnalysis, KNeighborsClassifier)
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 

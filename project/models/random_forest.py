@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from classification_wrapper import ClassificationWrapper
+from models.classification_wrapper import ClassificationWrapper
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html

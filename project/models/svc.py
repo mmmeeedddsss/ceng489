@@ -1,5 +1,5 @@
 from sklearn.svm import SVC
-from classification_wrapper import ClassificationWrapper
+from models.classification_wrapper import ClassificationWrapper
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html

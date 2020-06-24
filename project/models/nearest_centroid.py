@@ -1,5 +1,5 @@
 from sklearn.neighbors import NearestCentroid
-from classification_wrapper import ClassificationWrapper
+from models.classification_wrapper import ClassificationWrapper
 
 
 class NearestCentroidWrapper(ClassificationWrapper):

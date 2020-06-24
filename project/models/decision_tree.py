@@ -1,5 +1,5 @@
 from sklearn.tree import DecisionTreeClassifier
-from classification_wrapper import ClassificationWrapper
+from models.classification_wrapper import ClassificationWrapper
 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html

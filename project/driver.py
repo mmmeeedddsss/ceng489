@@ -1,11 +1,11 @@
 import operator
 from sdn.data_loader import CustomSDNReader
-from random_forest import RandomForestWrapper
-from gaussian_naive_bayes import GaussianNBWrapper
+from models.random_forest import RandomForestWrapper
+from models.gaussian_naive_bayes import GaussianNBWrapper
 from sklearn.metrics import classification_report
-from knearest import KNearestNeighborsWrapper
-from decision_tree import DecisionTreeWrapper
-from svc import SVCWrapper
+from models.knearest import KNearestNeighborsWrapper
+from models.decision_tree import DecisionTreeWrapper
+from models.svc import SVCWrapper
 
 
 def read_train_optimize_and_test(classifier=RandomForestWrapper):
@@ -13,7 +13,7 @@ def read_train_optimize_and_test(classifier=RandomForestWrapper):
         print(f'Train with size {train_size}')
         data = CustomSDNReader().read(train_size=train_size)
 
-        pred_y = classifier().fit_and_calculate_score(data['train']['X'],
+        pred_y = classifier().optimize_and_fit(data['train']['X'],
                                                data['train']['y'],
                                                data['test']['X'])
 
@@ -37,4 +37,4 @@ def read_train_and_test(classifier=RandomForestWrapper):
 
 
 if __name__ == '__main__':
-    read_train_and_test(SVCWrapper)
+    read_train_and_test(RandomForestWrapper)
